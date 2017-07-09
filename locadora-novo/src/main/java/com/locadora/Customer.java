@@ -1,33 +1,32 @@
 package com.locadora;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 	
-	private String _name;
-	private Vector _rentals = new Vector();
+	private String name;
+	
+	private List<Rental> rentals;
 
 	public Customer(String name) {
-		_name = name;
+		this.name = name;
+		this.rentals = new ArrayList<>();
 	}
 
-	public void addRental(Rental arg) {
-		_rentals.addElement(arg);
-	}
-
-	public String getName() {
-		return _name;
+	public void addRental(Rental rental) {
+		rentals.add(rental);
 	}
 
 	public String statement() {
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
-		Enumeration rentals = _rentals.elements();
+		
 		String result = "Rental Record for " + getName() + "\n";
-		while (rentals.hasMoreElements()) {
+		
+		for (Rental each : rentals) {
 			double thisAmount = 0;
-			Rental each = (Rental) rentals.nextElement();
+			
 			//determine amounts for each line
 			switch (each.getMovie().getPriceCode()) {
 			case Movie.REGULAR:
@@ -50,16 +49,23 @@ public class Customer {
 			if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE)
 					&& each.getDaysRented() > 1)
 				frequentRenterPoints++;
+			
 			//show figures for this rental
 			result += "\t" + each.getMovie().getTitle() + "\t"
 					+ String.valueOf(thisAmount) + "\n";
 			totalAmount += thisAmount;
 		}
+		
 		//add footer lines
 		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
 		result += "You earned " + String.valueOf(frequentRenterPoints)
 				+ " frequent renter points";
+		
 		return result;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 }
