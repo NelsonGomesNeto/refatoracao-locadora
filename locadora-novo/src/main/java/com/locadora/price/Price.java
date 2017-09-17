@@ -1,13 +1,11 @@
-package com.locadora.price;
+package main.java.com.locadora.price;
 
-public abstract class Price {
+public interface Price {
 
-	public abstract int getPriceCode();
-	
-	public abstract double getCharge(int daysRented);
+	double getCharge(int daysRented);
 
-	public int getFrequentRenterPoints(int daysRented) {
-		return 1;
-	}
+	Price removeDiscount();
+
+	int getFrequentRenterPoints(int daysRented);
 	
 }

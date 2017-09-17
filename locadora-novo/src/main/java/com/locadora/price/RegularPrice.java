@@ -1,14 +1,10 @@
-package com.locadora.price;
+package main.java.com.locadora.price;
 
-import com.locadora.Movie;
+import main.java.com.locadora.Movie;
 
-public class RegularPrice extends Price {
+public class RegularPrice implements Price {
 
 	@Override
-	public int getPriceCode() {
-		return Movie.REGULAR;
-	}
-
 	public double getCharge(int daysRented) {
 		double result = 2;
 
@@ -18,4 +14,16 @@ public class RegularPrice extends Price {
 		return result;
 	}
 
+	@Override
+	public Price removeDiscount() { return this; }
+
+	@Override
+	public int getFrequentRenterPoints(int daysRented) {
+		return daysRented > 2 ? 2 : 1;
+	}
+
+	@Override
+	public String toString() {
+		return "RegularPrice";
+	}
 }
