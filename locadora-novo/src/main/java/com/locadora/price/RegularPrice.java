@@ -1,7 +1,5 @@
 package main.java.com.locadora.price;
 
-import main.java.com.locadora.Movie;
-
 public class RegularPrice implements Price {
 
 	@Override
