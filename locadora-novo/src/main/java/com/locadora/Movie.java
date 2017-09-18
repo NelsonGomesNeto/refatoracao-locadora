@@ -2,6 +2,8 @@ package main.java.com.locadora;
 
 import main.java.com.locadora.price.*;
 
+// Clone --> Prototype
+
 public class Movie implements Cloneable {
 
 	public static final int CHILDREN = 2;
